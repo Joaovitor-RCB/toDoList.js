@@ -94,8 +94,21 @@ header{
     margin-right: 1.3rem;
 }
 
+#edit-input {
+    border-radius: 8px;
+    margin-right: 0.3rem;
+}
+
 #cancel-edit-btn {
+    font-weight: bold;
     margin-top: 1rem;
+    border-radius: 8px;
+    margin-right: 0.3rem;
+}
+#cancel-edit-btn:hover {
+    background-color: rgb(241, 75, 75);
+    color: #fdfdfd;
+    border: 2px solid #fdfdfd;
 }
 
 /*todo bar*/
@@ -176,5 +189,16 @@ header{
     color: #fff;
     text-decoration: line-through;
     font-style: italic;
+}
+
+.remove-todo:hover {
+    background-color: rgb(241, 75, 75);
+    color: #fdfdfd;
+    border: 2px solid #fdfdfd;
+}
+
+.finish-todo:hover {
+    background-color: rgb(94, 241, 75);
+    border: 2px solid #fdfdfd;
 }
 
