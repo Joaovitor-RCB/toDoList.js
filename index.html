@@ -37,46 +37,22 @@
             <div id="search">
                 <h4>Pesquisar:</h4>
                 <form>
-                    <input type="text" id="search-input" placeholder="Buscar">
-                    <button id="erase-button">
+                    <input type="text" id="barraPesquisa" placeholder="Buscar" onkeyup="pesquisar()">
+                    <button id="btnDeleteCaracter" type="button">
                         <i class="fa-solid fa-delete-left"></i>
                     </button>
                 </form>
             </div>
             <div id="filter">
                 <h4>Filtrar</h4>
-                <select id="filter-select">
-                    <option value="all">Todos</option>
-                    <option value="done">Feitos</option>
-                    <option value="todo">A fazer</option>
+                <select id="filtro" onchange="atualizaSelect()">
+                    <option id="all" value="todos">Todos</option>
+                    <option id="done" value="feitos">Feitos</option>
+                    <option id="todo" value="aFazer">A fazer</option>
                 </select>
             </div>
         </div>
-        <div id="todo-list">
-            <div class="todo done">
-                <h3>Estou fazendo...</h3>
-                <button class="finish-todo">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <button class="edit-todo">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
-                <button class="remove-todo">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="todo">
-                <h3>Estudar JavaScript...</h3>
-                <button class="finish-todo">
-                    <i class="fa-solid fa-check"></i>
-                </button>
-                <button class="edit-todo">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
-                <button class="remove-todo">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+        <div id="todo-list"> 
         </div>
     </div>
 </body>

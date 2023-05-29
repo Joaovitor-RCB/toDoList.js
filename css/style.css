@@ -14,8 +14,8 @@ body{
 
 button {
     background-color: #fdfdfd;
-    color: #102f5e;
-    border: 2px solid #102f5e;
+    color: #515151;
+    border: 2px solid #515151;
     padding: .3rem .6rem;
     font-size: 1rem;
     cursor: pointer;
@@ -26,7 +26,8 @@ button {
 }
 
 button:hover {
-    background-color: #102f5e;
+    background-color: #d9ec0d;
+    border:solid 2px #fff;
 }
 
 button:hover > i {
@@ -34,7 +35,7 @@ button:hover > i {
 }
 
 button i {
-    color: #102f5e;
+    color: #515151;
     font-weight: bold;
     pointer-events: none;
 }
@@ -45,6 +46,14 @@ input,select {
 
 .hide{
     display: none;
+}
+
+#todo-list .hideX{
+    display: none;
+}
+
+#todo-list .hideY{
+    display: initial;
 }
 
 /* todo header */
@@ -84,19 +93,37 @@ header{
 #todo-input{
     border-radius: 8px;
     margin-right: 0.3rem;
+    border: 2px solid #515151;
 }
 
 .form-control button{
     border-radius: 8px;
+    border: 2px solid #515151;
+}
+
+.form-control button:hover{
+    border: solid 2px #fdfdfd;
+    background-color: rgb(94, 241, 75);
 }
 
 .form-control{
     margin-right: 1.3rem;
 }
 
+#erase-button:hover {
+    background-color: rgb(241, 75, 75);
+    border: solid 2px #fdfdfd;
+}
+
+#btnDeleteCaracter:hover{
+    background-color: rgb(241, 75, 75);
+    border: solid 2px #fdfdfd;
+}
+
 #edit-input {
     border-radius: 8px;
     margin-right: 0.3rem;
+    border: solid 2px #515151;
 }
 
 #cancel-edit-btn {
@@ -140,6 +167,8 @@ header{
     width: 100%;
     margin-right: 0.3rem;
     border-radius: 8px;
+    border: 2px solid #515151;
+
 }
 
 #search button{
@@ -155,7 +184,7 @@ header{
 #filter select {
     flex: 1;
     border-radius: 8px;
-    border: 2px solid #102f5e;
+    border: 2px solid #515151;
 }
 
 /* todo List */
@@ -182,7 +211,7 @@ header{
 }
 
 .done {
-    background-color: #395169;
+    background-color: #908b8b;
 }
 
 .done h3 {
@@ -202,3 +231,4 @@ header{
     border: 2px solid #fdfdfd;
 }
 
+    

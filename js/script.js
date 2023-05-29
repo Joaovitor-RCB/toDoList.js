@@ -1,123 +1,170 @@
-// Seleção de Eventos
-    const todoForm = document.querySelector("#todo-form");
-    const todoInput = document.querySelector("#todo-input");
-    const todoList = document.querySelector("#todo-list");
-    const editForm = document.querySelector("#edit-form");
-    const editInput = document.querySelector("#edit-input");
-    const cancelEditBtnt = document.querySelector("#cancel-edit-btn");
+const todoForm = document.getElementById("todo-form");
+const todoInput = document.getElementById("todo-input");
+const todoList = document.getElementById("todo-list");
+const editForm = document.getElementById("edit-form");
+const editInput = document.getElementById("edit-input");
+const cancelEditBtnt = document.getElementById("cancel-edit-btn");
+let oldInputValue;
 
-    let oldInputValue;
+const saveTodo = (text) => {
+  const todo = document.createElement("div");
+  todo.classList.add("todo");
 
-// Funções //
+  const todoTitle = document.createElement("h3");
+  todoTitle.innerText = text;
+  todo.appendChild(todoTitle);
 
-    //função cria div//
-    const saveTodo = (text) => {
+  const doneBtn = document.createElement("button");
+  doneBtn.classList.add("finish-todo");
+  doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+  todo.appendChild(doneBtn);
 
-        const todo = document.createElement("div")
-        todo.classList.add("todo")
+  const editBtn = document.createElement("button");
+  editBtn.classList.add("edit-todo");
+  editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>';
+  todo.appendChild(editBtn);
 
-        const todoTitle = document.createElement("h3")
-        todoTitle.innerText = text 
-        todo.appendChild(todoTitle)
+  const deleteBtn = document.createElement("button");
+  deleteBtn.classList.add("remove-todo");
+  deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  todo.appendChild(deleteBtn);
 
-        const doneBtn = document.createElement("button")
-        doneBtn.classList.add("finish-todo")
-        doneBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
-        todo.appendChild(doneBtn)
+  todoList.appendChild(todo);
 
-        const editBtn = document.createElement("button")
-        editBtn.classList.add("edit-todo")
-        editBtn.innerHTML = '<i class="fa-solid fa-pen"></i>'
-        todo.appendChild(editBtn)
+  todoInput.value = "";
 
-        const deleteBtn = document.createElement("button")
-        deleteBtn.classList.add("remove-todo")
-        deleteBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
-        todo.appendChild(deleteBtn)
+  todoInput.focus();
+};
 
-        todoList.appendChild(todo)
+const toggleForms = () => {
+  editForm.classList.toggle("hide");
+  todoForm.classList.toggle("hide");
+  todoList.classList.toggle("hide");
+};
 
-        todoInput.value = "";
+const updateTodo = (text) => {
+  const todos = document.querySelectorAll(".todo");
 
-        todoInput.focus();
-    };
+  todos.forEach((todo) => {
+    let todoTitle = todo.querySelector("h3");
 
-    //função toggleForms, alterna entre formulario de edição e adição//
-    const toggleForms = () => {
-        editForm.classList.toggle("hide");
-        todoForm.classList.toggle("hide");
-        todoList.classList.toggle("hide");
-    };
-
-    //fução seleciona todos aray//
-    const updateTodo = (text) => {
-
-        const todos = document.querySelectorAll("todo")
-
-        todos.forEach((todo) =>{
-
-            let todoTitle = todo.querySelector("h3")
-
-            if(todoTitle.innerText === oldInputValue) {
-                todoTitle.innerText = text 
-            }
-        })
+    if (todoTitle.innerText === oldInputValue) {
+      todoTitle.innerText = text;
     }
+  });
+};
 
-// Eventos 
 todoForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const inputValue = todoInput.value;
+  const inputValue = todoInput.value;
 
-    if (inputValue) {
-        saveTodo(inputValue)
-    }
+  if (inputValue) {
+    saveTodo(inputValue);
+  }
 });
 
-document.addEventListener("click",  (e) => {
-    const targetEL = e.target;
-    const parentEL = targetEL.closest("div");
+document.addEventListener("click", (e) => {
+  const targetEL = e.target;
+  const parentEL = targetEL.closest("div");
 
-    //validação, conponete pai existe?//
-    let todoTitle;
-    if(parentEL && parentEL.querySelector("h3")){
-       todoTitle = parentEL.querySelector("h3").innerText;
-    }
-              ///////////////
-    if (targetEL.classList.contains("finish-todo")){
-        parentEL.classList.toggle("done");
-    }
+  let todoTitle;
+  if (parentEL && parentEL.querySelector("h3")) {
+    todoTitle = parentEL.querySelector("h3").innerText;
+  }
+  if (targetEL.classList.contains("finish-todo")) {
+    parentEL.classList.toggle("done");
+  }
 
-    if (targetEL.classList.contains("remove-todo")){
-        parentEL.remove();
-    }
+  if (targetEL.classList.contains("remove-todo")) {
+    parentEL.remove();
+  }
 
-    if (targetEL.classList.contains("edit-todo")){
-        toggleForms();
+  if (targetEL.classList.contains("edit-todo")) {
+    toggleForms();
 
-        editInput.value = todoTitle;
-        oldInputValue = todoTitle;
-    }
+    editInput.value = todoTitle;
+    oldInputValue = todoTitle;
+  }
 });
 
 cancelEditBtnt.addEventListener("click", (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    toggleForms();
+  toggleForms();
 });
 
 editForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-    e.preventDefault()
+  const editInputValue = editInput.value;
 
-    const editInputValue = editInput.value;
+  if (editInputValue) {
+    updateTodo(editInputValue);
+  }
 
-    if(editInputValue) {
-        updateTodo(editInputValue)
+  toggleForms();
+});
+
+const feito = document.getElementsByClassName("done");
+const aFazer = document.getElementsByClassName("todo");
+
+atualizaSelect = () => {
+  var filtro = document.getElementById("filtro");
+
+  var opcaoValor = filtro.options[filtro.selectedIndex].value;
+
+  if (opcaoValor === "todos") {
+    for (i = 0; i < aFazer.length; i++) {
+      aFazer[i].classList.remove("hideX");
     }
+  } else if (opcaoValor === "aFazer") {
+    for (i = 0; i < aFazer.length; i++) {
+      aFazer[i].classList.remove("hideX");
+    }
+    for (i = 0; i < feito.length; i++) {
+      feito[i].classList.add("hideX");
+    }
+  } else if (opcaoValor === "feitos") {
+    for (i = 0; i < aFazer.length; i++) {
+      aFazer[i].classList.add("hideX");
+    }
+    for (i = 0; i < feito.length; i++) {
+      feito[i].classList.remove("hideX");
+    }
+  }
+};
 
-    toggleForms()
-})
+const btnDeleteCaracter = document.getElementById("btnDeleteCaracter");
 
-//Save Tarefa 
+btnDeleteCaracter.addEventListener(
+  "click",
+  (btnDelC = () => {
+    if (barraPesquisa.value.length) {
+      barraPesquisa.value = barraPesquisa.value.substr(
+        0,
+        barraPesquisa.value.length - 1
+      );
+      barraPesquisa.focus();
+    }
+  })
+);
+
+pesquisar = () => {
+  let valorPesquisa = document
+    .getElementById("barraPesquisa")
+    .value.toLowerCase();
+  let divTodo = document.getElementsByClassName("todo");
+
+  for (i = 0; i < divTodo.length; i++) {
+    let divSelect = divTodo[i];
+    let textTodo = divSelect.querySelector("h3");
+    let textoTodoValue = textTodo.innerText.toLowerCase();
+
+    if (textoTodoValue.includes(valorPesquisa)) {
+      divSelect.style.display = "";
+    } else {
+      divSelect.style.display = "none";
+    }
+  }
+};
